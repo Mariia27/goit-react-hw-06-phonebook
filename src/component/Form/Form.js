@@ -5,7 +5,7 @@ import phonebookActions from "../../Redux/book/phonebook-actions";
 import style from "../styles.module.css";
 
 function Form({ contactList, onSubmit }) {
-  const [name, setName] = useState("");
+  const [newName, setName] = useState("");
   const [number, setNumber] = useState("");
   const InputValues = (evt) => {
     const { name, value } = evt.currentTarget;
@@ -22,7 +22,7 @@ function Form({ contactList, onSubmit }) {
     }
   };
   const addContact = (evt) => {
-    const lengthInputNemeChech = name.length;
+    const lengthInputNemeChech = newName.length;
     const lengthInputNumberChech = number.length;
     evt.preventDefault();
     if (lengthInputNemeChech < 2 || lengthInputNemeChech > 10) {
@@ -34,17 +34,7 @@ function Form({ contactList, onSubmit }) {
       return;
     }
 
-    const checkName = contactList(name);
-    if (checkName) {
-      alert('Це ім"я вже існує');
-
-      return;
-    }
-    onSubmit({
-      id: shortid.generate(),
-      name,
-      number,
-    });
+    onSubmit(newName, number, contactList);
     resetInputValues();
   };
 
@@ -52,26 +42,28 @@ function Form({ contactList, onSubmit }) {
     setName("");
     setNumber("");
   };
+
   const idName = shortid.generate();
   const idNumber = shortid.generate();
   return (
     <form className={style.form} onSubmit={addContact}>
       <label htmlFor={idName} className={style.labelName}>
-        Name
+        Им'я
       </label>
       <input
         id={idName}
         type="text"
         name="name"
-        value={name}
+        value={newName}
         onChange={InputValues}
         autoComplete="off"
       ></input>
       <label htmlFor={idNumber} className={style.labelNumber}>
-        Number
+        Номер
       </label>
       <input
         id={idNumber}
+        placeholder="(0xx) xxx-xx-xx"
         type="tel"
         pattern="^[ 0-9]+$"
         name="number"
@@ -80,11 +72,12 @@ function Form({ contactList, onSubmit }) {
         autoComplete="off"
       ></input>
       <button className={style.btnForm} type="submite">
-        Add contact
+        Додати контакт
       </button>
     </form>
   );
 }
+
 const onCheckName = (contactList, newName) => {
   return contactList.some(({ name }) => name === newName);
 };
