@@ -1,9 +1,8 @@
 import { useState } from "react";
 import shortid from "shortid";
 import { connect } from "react-redux";
-import phonebookActions from "../Redux/phonebook/phonebook-actions";
+import phonebookActions from "../../Redux/book/phonebook-actions";
 import style from "../styles.module.css";
-
 
 function Form({ contactList, onSubmit }) {
   const [name, setName] = useState("");

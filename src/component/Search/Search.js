@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import shortid from "shortid";
-import phonebookActions from "../Redux/phonebook/phonebook-actions";
+import phonebookActions from "../../Redux/book/phonebook-actions";
 import style from "../styles.module.css";
 function Search({ value, Search }) {
   const id = shortid.generate();

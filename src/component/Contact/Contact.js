@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import phonebookActions from "../Redux/phonebook/phonebook-actions";
+import phonebookActions from "../../Redux/book/phonebook-actions";
 
 import style from "../styles.module.css";
 
@@ -23,7 +23,7 @@ const СontactList = ({ contactList, onDeleted }) => {
       })}
     </ul>
   );
-}
+};
 
 const getFilterContacts = (allContacts, filter) => {
   const normalizeFilter = filter.toLowerCase();

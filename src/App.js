@@ -1,8 +1,8 @@
 import style from "./component/styles.module.css";
 
-import Form from "./components/Form";
-import ContactList from "./components/ContactList";
-import SearchContact from "./components/SearchContact";
+import Form from "./component/Form/Form";
+import ContactList from "./component/Contact/Contact";
+import SearchContact from "./component/Search/Search";
 
 export default function Mobile() {
   return (
